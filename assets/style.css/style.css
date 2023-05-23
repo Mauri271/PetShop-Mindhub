@@ -1,0 +1,16 @@
+:root{
+    --tamaño-icon:4rem
+}
+
+#favicon{
+    width: var(--tamaño-icon);
+    height: var(--tamaño-icon);
+}
+
+p i{
+    font-size: 2rem;
+}
+
+nav, footer{
+    background-color: #ABE5C9 !important;
+}

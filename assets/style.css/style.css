@@ -15,7 +15,7 @@ p i{
 
 nav, footer{
     background-color: #ABE5C9 !important;
-    min-height: 8vh;
+    height: 8vh;
 }
 
 main {
@@ -64,5 +64,4 @@ main {
     border-color: #ecf0ef;
     height: 2rem;
     width: 1.8rem;
-
 }

@@ -11,9 +11,12 @@ p i{
     font-size: 2rem;
 }
 
+/* Details */
+
 nav, footer{
     background-color: #ABE5C9 !important;
 }
+
 
 .bi-cart3{
     font-size: 2rem;

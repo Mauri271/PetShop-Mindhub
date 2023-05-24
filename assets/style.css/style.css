@@ -15,6 +15,12 @@ p i{
 
 nav, footer{
     background-color: #ABE5C9 !important;
+    height: 8vh;
+}
+
+main {
+    min-height: 84vh;
+    background-color:#ebebeb;
 }
 
 
@@ -24,9 +30,7 @@ nav, footer{
 }
 
 /* pharmacy & toys -- cards */
-main{
-    background-color:#ebebeb;
-}
+
 .card{
     width: 18rem;
     border-radius: 0px;
@@ -60,4 +64,5 @@ main{
     border-color: #ecf0ef;
     height: 2rem;
     width: 1.8rem;
+
 }

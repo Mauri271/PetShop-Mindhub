@@ -8,127 +8,125 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="./../style.css/stylePharmacy.css">
     <link rel="stylesheet" href="../style.css/style.css">
-    <link rel="shortcut icon" href="../images/favicon.jpg" type="image/x-icon">
-    <title>Juguetes</title>
+    <title>Pharmacy</title>
+
 </head>
 
 <body id="app">
-    
-    
 
     <header>
-        <nav class="navbar navbar-expand-lg d-flex flex-lg-row flex-md-column justify-content-around gap-2">
-            <div class="d-flex">
-                <form class="d-flex" role="search">
-                    <input v-model="juegueteBuscadoPorUsuario" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Buscar</button>
-                  </form>
-            </div>
-            <div class="d-flex gap-4" >                
+
+        <nav class="navbar navbar-expand-md">
+            <div class="container-fluid d-flex justify-content-between px-5">
+                <a href="">
+                    <img id="favicon" src="../images/favicon.jpg" alt="favicon">
+
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>                
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav gap-2 d-flex flex-md-row flex-sm-column" >
+                </button>
+
+                <div class="collapse navbar-collapse flex-grow-0" id="navbarNav">
+                    <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="../../index.html">Inicio</a>
+                            <a class="nav-link" aria-current="page" href="../../index.html">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./pharmacy.html">Farmacia</a>
+                            <a class="nav-link" href="#">Farmacia</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">Juguetes</a>
+                            <a class="nav-link active" href="./toys.html">Jugueteria</a>
+
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./contact.html">Contacto</a>
                         </li>
                     </ul>
                 </div>
-            </div>
-            <div>
-                <img id="favicon" src="../images/favicon.jpg" alt="favicon">
-            </div>
-            <div>
-                <button type="button" class="btn btn-primary">
-                    <i class="bi bi-cart-plus"></i> <span class="badge text-bg-secondary">{{counter}}</span>
-                  </button>
-                
+
+                <div class="position-relative">
+                    <i class="bi bi-cart3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                        aria-controls="offcanvasRight"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                        {{arrayCarrito.length}}
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                </div>
             </div>
         </nav>
-    </header>
-
-
-    <main class="d-flex flex-column">
-    <section>
-        <h1>Juguetes</h1>       
-            <div>
-                <div  class="d-flex flex-row gap-4 flex-wrap">
-                <div  v-for="juguete of filtroJuguetes" class="card" style="width: 18rem;">
-                    <img :src="juguete.imagen" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <p class="card-text">{{juguete.descripcion}}</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item">{{juguete.categoria}}</li>
-                      <li class="list-group-item">{{juguete.precio}}</li>
-                      <li class="list-group-item">{{juguete.diponibles}}</li>
-                    </ul>
-                    <div class="card-body d-flex justify-content-around">
-                        <i v-on:click="counter++" class="buy bi bi-bag-plus-fill d-flex gap-2 align-items-center">Agregar</i>
-                        <i v-on:click="counter--" class="buy bi bi-bag-dash-fill d-flex gap-2 align-items-center">Quitar</i>
-                    </div>
-                  </div>
+        <div class="container-fluid">
+            <div class="row justify-content-center py-2">
+                <div class="d-flex justify-content-center">
+                    <form class="w-50 d-flex" role="search">
+                        <!-- {{filtro}} -->
+                        <input class="form-control" type="search" placeholder="Search" aria-label="Search"
+                            v-model="vModelSearch">
+                    </form>
                 </div>
             </div>
+        </div>
 
-            <div  class="d-flex flex-row gap-4 flex-wrap">
-                <div  v-if="juegueteBuscadoPorUsuario.length > 0 && juegueteBuscadoPorUsuario != filtroJuguetes"class="card" style="width: 18rem;">
-                    <img src="../images/no-encontrado.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <p class="card-text">No se encontró el juguete</p>
+    </header>
+
+    <main>
+        <div class="container py-5">
+            <div class="row justify-content-lg-center">
+                <div class="col-12 d-flex flex-wrap justify-content-center gap-4">
+                    <div class="card p-0 border-1 position-relative" v-for="articulo of filtro">
+                        <span v-if="!articulo.disponibles"
+                            class="m-1 badge rounded-pill text-bg-danger position-absolute top-0 start-0">Sin
+                            stock</span>
+                        <img :src="articulo.imagen" class="card-img-top" :alt="articulo.nombre">
+                        <div class="card-body">
+                            <h5 class="card-title">${{articulo.precio.toLocaleString()}}</h5>
+                            <p class="card-text text-secondary">{{articulo.producto}}</p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-around">
+                            <button class="btn btn-success" @click="añadirCarrito(articulo._id)"><i>+ Add</i></button>
+                        </div>
                     </div>
-                  </div>
                 </div>
+            </div>
+        </div>
+    </main>
 
-        </section>
+    <!-- offcanvas carrito -->
 
-        <!-- CARRO DE COMPRAS -->
-        <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-  Ver compras
-</a>
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Articulos del carrito
-        <a class="dropdown-item" href="#">
-            <button type="button" class="btn btn-primary">
-                <i class="bi bi-cart-plus"></i> <span class="badge text-bg-secondary">{{counter}}</span>
-              </button>
-          </button>
-        </a>
-    </h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    <div>
-      Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">Shop Cart</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="alert alert-warning mt-3 mb-0 mx-3">
+            Total de la compra: 
+          </div>
+        <div class="offcanvas-body mx-2">
+            <div class="row align-content-center py-2 border-top" v-if="arrayCarrito.length > 0" v-for="articulo of arrayCarrito">
+                <div class="col-3 col-md-2">
+                    <img class="img-fluid" :src="articulo.imagen" :alt="articulo.producto" >
+                </div>
+                <div class="col-4 col-md-6 col-lg-5">
+                    <p class="fw-bold small">{{articulo.producto}}</p>
+                    <a class="small text-decoration-none text-dark" role="button"><span class="me-1"><i class="bi bi-trash"></i></span><span class="text-muted">Remove</span></a>
+                </div>
+                <div class="col-3">
+                    <div class="input-group input-spinner">
+                        <input type="button" value="-" class="button-minus  btn  btn-sm" data-field="quantity">
+                        <input type="button" value="+" class="button-plus  btn  btn-sm" data-field="quantity">
+                    </div>
+                </div>
+                <div class="col-2 text-end"><span class="fw-bold">${{articulo.precio.toLocaleString()}}</span></div>
+            </div>
+            <div v-else>
+                <p>caa</p>
+            </div>
+        </div>
     </div>
-    <div class="dropdown mt-3">
-      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-        Dropdown button
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
 
-
-      </main>
 
     <footer class="d-flex justify-content-around align-items-center">
         <p class="d-flex gap-4 ">
@@ -141,11 +139,13 @@
 
 
 
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="../JsPages/toys.js"></script>
+    <script src="./../JsPages/toys.js"></script>
+
 </body>
 
 </html>

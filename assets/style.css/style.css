@@ -14,3 +14,47 @@ p i{
 nav, footer{
     background-color: #ABE5C9 !important;
 }
+
+.bi-cart3{
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* pharmacy & toys -- cards */
+main{
+    background-color:#ebebeb;
+}
+.card{
+    width: 18rem;
+    border-radius: 0px;
+}
+
+.card img{
+    height: 14.5rem !important;
+    object-fit: cover;
+}
+
+.card-footer{
+    border: none !important;
+    background-color: #fff !important;
+}
+
+/* carrito */
+.offcanvas{
+    width: 35rem !important;
+}
+
+.imagen-carrito{
+    height: 4.5rem;
+    object-fit: cover;
+}
+.bi-trash{
+    color: green;
+}
+
+.input-group .button-menos .button-plus{
+    background-color: transparent;
+    border-color: #ecf0ef;
+    height: 2rem;
+    width: 1.8rem;
+}

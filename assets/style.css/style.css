@@ -14,3 +14,44 @@ p i{
 nav, footer{
     background-color: #ABE5C9 !important;
 }
+.carousel-img {
+    height: 60vh !important;
+    
+}
+.caja-carousel {
+    width: 70vw !important;
+}
+.carousel-contenedor  {
+    border-radius: 10px;
+    background-color: rgba(46, 55, 63, 0.479);
+    font-size: 4rem !important;
+    
+} 
+.imagen-farmacia {
+    width: 20vw !important;
+    height: 30vh !important;
+    padding-top: 6rem !;
+}
+.imagen-carousel-2-home {
+    width: 8rem !important;
+    margin: 1rem !important;
+}
+.cardfarjug {
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+.ms-20 {
+    margin-left: 20rem !important;
+}
+.ms-5{
+    margin-left: 5rem !important;
+}
+.m-3{
+    margin: 3rem !important;
+}
+.card:hover{
+    -webkit-transform:scale(1.1);transform:scale(1.1);
+overflow:hidden;
+transition: 1.5s;
+}

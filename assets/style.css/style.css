@@ -17,18 +17,47 @@ nav, footer{
     background-color: #ABE5C9 !important;
 }
 
-.cardDetails{
-    background: #ABE5C9;
+
+.bi-cart3{
+    font-size: 2rem;
+    cursor: pointer;
 }
 
-.imgDetails{
-    border: 1px solid black; 
+/* pharmacy & toys -- cards */
+main{
+    background-color:#ebebeb;
+}
+.card{
+    width: 18rem;
+    border-radius: 0px;
 }
 
-.buy{
-    cursor:pointer
+.card img{
+    height: 14.5rem !important;
+    object-fit: cover;
 }
 
-h1, h2, h2{
-    text-align: center;
+.card-footer{
+    border: none !important;
+    background-color: #fff !important;
+}
+
+/* carrito */
+.offcanvas{
+    width: 35rem !important;
+}
+
+.imagen-carrito{
+    height: 4.5rem;
+    object-fit: cover;
+}
+.bi-trash{
+    color: green;
+}
+
+.input-group .button-menos .button-plus{
+    background-color: transparent;
+    border-color: #ecf0ef;
+    height: 2rem;
+    width: 1.8rem;
 }

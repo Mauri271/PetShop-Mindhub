@@ -8,7 +8,7 @@ createApp({
             vModelSearch:"",
             vModelCheck: [],
             arrayCarrito: [],
-            
+            isAnimated: false
 
         }
     },
@@ -44,7 +44,6 @@ createApp({
         },
         vaciarStorage(){
             localStorage.removeItem("carrito")
-            this.arrayCarrito = []
         }
     },
     computed: {

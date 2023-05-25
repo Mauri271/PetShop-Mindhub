@@ -1,29 +1,37 @@
 const {createApp} = Vue 
-const myModal = document.getElementById('exampleModal')
-const myInput = document.getElementById('myInput')
-
-myModal.addEventListener('shown.bs.modal', () => {
-  myInput.focus()
-})
 
 createApp({
-
     data(){
         return {
-            datosContacto: {},
-            open: false
+            open: false,
+            hayDatosIngresados: false,
+            mostrarDatosIngresados: false,
+            nombre: '',
+            apellido: '',
+            telefono: '',
+            email: '',
+            mascota: '',
+            mensaje: '',
+            datosIngresados: []
         }
     },
-
-    created(){
-        
+    computed: {
+        validarDatosIngresados() {
+            this.hayDatosIngresados = this.nombre != '' && this.apellido != '' && this.mensaje != ''
+        }
     },
-
     methods: {
-        enviarDatosFormulario(datos) {
-            this.open = true
-            console.log(this.open);
+        enviarDatosFormulario() {
+            this.datosIngresados.push({
+                nombre: this.nombre,
+                apellido: this.apellido,
+                mensaje: this.mensaje
+            })
+            this.resetearFormulario()
+            this.mostrarDatosIngresados = true
+        },
+        resetearFormulario() {
+            this.nombre = this.apellido = this.telefono = this.email = this.mascota = this.mensaje = ''
         }
     },
-  
 }).mount('#app')

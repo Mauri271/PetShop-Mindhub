@@ -36,10 +36,10 @@
                             <a class="nav-link" aria-current="page" href="../../index.html">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Farmacia</a>
+                            <a class="nav-link" href="./pharmacy.html">Farmacia</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="./toys.html">Jugueteria</a>
+                            <a class="nav-link active" href="#">Jugueteria</a>
 
                         </li>
                         <li class="nav-item">
@@ -78,15 +78,18 @@
                 <div class="col-12 d-flex flex-wrap justify-content-center gap-4">
                     <div class="card p-0 border-1 position-relative" v-for="articulo of filtro">
                         <span v-if="!articulo.disponibles"
-                            class="m-1 badge rounded-pill text-bg-danger position-absolute top-0 start-0">Sin
-                            stock</span>
-                        <img :src="articulo.imagen" class="card-img-top" :alt="articulo.nombre">
+                        class="m-1 badge rounded-pill text-bg-danger position-absolute top-0 start-0">Sin
+                        stock</span>
+                    <a :href="'./details.html?_id='+articulo._id"><img :src="articulo.imagen" class="card-img-top" :alt="articulo.nombre"></a>
                         <div class="card-body">
-                            <h5 class="card-title">${{articulo.precio.toLocaleString()}}</h5>
+                            <div class="d-flex justify-content-between">
+                                <h5 class="card-title ">${{articulo.precio.toLocaleString()}}</h5>
+                                <span class="disponibles-warning" v-if="articulo.disponibles < 5 && articulo.disponibles!=0"><i class="bi bi-exclamation-triangle-fill text-warning"></i> <span class="small text-muted">{{articulo.disponibles}} unidades</span></span>
+                            </div>
                             <p class="card-text text-secondary">{{articulo.producto}}</p>
                         </div>
                         <div class="card-footer d-flex justify-content-around">
-                            <button class="btn btn-success" @click="añadirCarrito(articulo._id)"><i>+ Add</i></button>
+                            <button  :class="articulo.disponibles != 0 ? 'btn btn-success' : 'btn btn-success disabled' " @click="añadirCarrito(articulo._id)"><i>+ Add</i></button>
                         </div>
                     </div>
                 </div>
@@ -101,8 +104,8 @@
             <h5 class="offcanvas-title" id="offcanvasRightLabel">Shop Cart</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="alert alert-warning mt-3 mb-0 mx-3">
-            Total de la compra: 
+        <div class="d-flex justify-content-between alert alert-warning mt-3 mb-0 mx-3">
+            <span>Total de la compra:</span> <span>${{funcionPrecioTotal.toLocaleString()}}</span>
           </div>
         <div class="offcanvas-body mx-2">
             <div class="row align-content-center py-2 border-top" v-if="arrayCarrito.length > 0" v-for="articulo of arrayCarrito">
@@ -111,7 +114,7 @@
                 </div>
                 <div class="col-4 col-md-6 col-lg-5">
                     <p class="fw-bold small">{{articulo.producto}}</p>
-                    <a class="small text-decoration-none text-dark" role="button"><span class="me-1"><i class="bi bi-trash"></i></span><span class="text-muted">Remove</span></a>
+                    <a class="small text-decoration-none text-dark" role="button" @click="borrarCarrito(articulo._id)"><span class="me-1"><i class="bi bi-trash"></i></span><span class="text-muted">Remove</span></a>
                 </div>
                 <div class="col-3">
                     <div class="input-group input-spinner">

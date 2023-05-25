@@ -8,7 +8,7 @@ createApp({
             vModelSearch:"",
             vModelCheck: [],
             arrayCarrito: [],
-            isAnimated: false
+            
 
         }
     },
@@ -41,6 +41,10 @@ createApp({
         },
         getLocalStorage(){
             return JSON.parse(localStorage.getItem("carrito"))
+        },
+        vaciarStorage(){
+            localStorage.removeItem("carrito")
+            this.arrayCarrito = []
         }
     },
     computed: {
@@ -54,6 +58,7 @@ createApp({
         },
         funcionPrecioTotal(){
             return this.arrayCarrito.reduce((acumulador, item)=> acumulador + item.precio, 0 )
-        }
+        },
+        
     } 
 }).mount('#app');

@@ -10,6 +10,7 @@ nav, footer{
 /* pharmacy & toys -- cards */
 main{
     background-color:#ebebeb;
+    min-height: 84vh;
 }
 .card{
     width: 18rem;
@@ -39,16 +40,10 @@ main{
     color: green;
 }
 
-.input-group .button-menos .button-plus{
-    background-color: transparent;
-    border-color: #ecf0ef;
-    height: 2rem;
-    width: 1.8rem;
+.button-minus, .button-plus, .form-input{
+    border: 1px solid #ecf0ef !important;
+    width: 1.8rem !important;
 }
-
-  
-  
-  
-  
-  
-  
+.form-input{
+    text-align: center;
+}

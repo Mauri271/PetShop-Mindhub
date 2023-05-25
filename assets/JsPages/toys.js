@@ -38,6 +38,10 @@ createApp({
         },
         getLocalStorage(){
             return JSON.parse(localStorage.getItem("carrito"))
+        },
+        vaciarStorage(){
+            localStorage.removeItem("carrito")
+            this.arrayCarrito = []
         }
     },
     computed: {

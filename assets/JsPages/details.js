@@ -3,9 +3,7 @@ const { createApp } = Vue;
 createApp({
     data(){
         return{
-            arrayProductos:[],
-            id:null,
-            producto:{}
+            producto:[]
         }
     },
 
@@ -17,20 +15,19 @@ createApp({
             this.arrayProductos = data
 
             const params = new URLSearchParams(location.search);
-            const idParams = params.get(`id`)
+            const idParams = params.get(`_id`)
 
             this.producto = this.arrayProductos.find((articulo => articulo._id == idParams))
 
             console.log(this.arrayProductos)
 
-            document.title = `Details / ${this.arrayProductos.name }`
+            document.title = `Details / ${this.producto.producto }`
 
           
 
             console.log(this.producto)
             console.log(idParams)
 
-           this.producto = this.arrayProductos.find()
         }).catch(error => console.log(error))
     }
 }).mount(`#app`)

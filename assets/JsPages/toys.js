@@ -30,6 +30,7 @@ createApp({
             }
             const json = JSON.stringify(this.arrayCarrito)
             localStorage.setItem("carrito", json)
+            alertify.success('se ha añadido el articulo al carrito');
         },
         borrarCarrito(id){
             this.arrayCarrito = this.arrayCarrito.filter(articulo => articulo._id != id)

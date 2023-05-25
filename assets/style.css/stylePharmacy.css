@@ -1,28 +1,6 @@
-:root{
-    --tamaño-icon:4rem
-}
-
-#favicon{
-    width: var(--tamaño-icon);
-    height: var(--tamaño-icon);
-}
-
-p i{
-    font-size: 2rem;
-}
-
-/* Details */
-
 nav, footer{
     background-color: #ABE5C9 !important;
-    height: 8vh;
 }
-
-main {
-    min-height: 84vh;
-    background-color:#ebebeb;
-}
-
 
 .bi-cart3{
     font-size: 2rem;
@@ -30,7 +8,9 @@ main {
 }
 
 /* pharmacy & toys -- cards */
-
+main{
+    background-color:#ebebeb;
+}
 .card{
     width: 18rem;
     border-radius: 0px;
@@ -64,5 +44,11 @@ main {
     border-color: #ecf0ef;
     height: 2rem;
     width: 1.8rem;
-
 }
+
+  
+  
+  
+  
+  
+  

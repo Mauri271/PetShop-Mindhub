@@ -1,47 +1,57 @@
-const {createApp} = Vue;
+const { createApp } = Vue
 
-const app = createApp ({
-
+createApp({
     data(){
-      return{
-        arrayJuguetes:[],
-        counter:0,
-        juegueteBuscadoPorUsuario:``,
-        arrayData:[]
-      }
-    },
-
-    created(){
-
-      fetch(`https://mindhub-xj03.onrender.com/api/petshop`)
-      .then(res => res.json())
-      .then(data => {
-
-        this.arrayData = data
-       
-        this.arrayJuguetes = this.arrayData.filter(e=> e.categoria === "jugueteria" )
-
-
-
-
-        console.log(this.arrayJuguetes)
-
-      })
-    },
-
-    computed:{
-
-      filtroJuguetes(){
-
-        let articulo = this.arrayJuguetes
-
-        if(this.juegueteBuscadoPorUsuario){
-
-          articulo = articulo.filter(e=> e.producto.toLowerCase().includes(this.juegueteBuscadoPorUsuario.toLowerCase()))
+        return{
+            articulos: [],
+            articulosMostrar: [],
+            vModelSearch:"",
+            vModelCheck: [],
+            arrayCarrito: []
         }
-        
-        return articulo
-      },
+    },
+    created(){
+        fetch("https://mindhub-xj03.onrender.com/api/petshop")
+        .then(response => response.json())
+        .then((data) =>{
+            this.articulos = data;
+            this.articulosMostrar = this.articulos.filter(item => item.categoria == "jugueteria" )
+            this.arrayCarrito = this.getLocalStorage() ?? []
+        })
 
-    }
-}).mount(`#app`)
+    },
+    methods: {
+        añadirCarrito(id){
+            if(this.arrayCarrito.find(articulo => articulo._id == id)){
+                this.arrayCarrito = this.arrayCarrito.filter(articulo => articulo._id != id)
+            }else {
+                const aux = this.articulosMostrar.find(articulo => articulo._id == id)
+                this.arrayCarrito.push(aux)
+            }
+            const json = JSON.stringify(this.arrayCarrito)
+            localStorage.setItem("carrito", json)
+        },
+        borrarCarrito(id){
+            this.arrayCarrito = this.arrayCarrito.filter(articulo => articulo._id != id)
+            const json = JSON.stringify(this.arrayCarrito)
+            localStorage.setItem("carrito", json)
+        },
+        getLocalStorage(){
+            return JSON.parse(localStorage.getItem("carrito"))
+        }
+    },
+    computed: {
+        
+        filtro(){
+            let articulo = this.articulosMostrar
+
+            if(this.vModelSearch){
+                articulo = articulo.filter(item => item.producto.toLowerCase().includes(this.vModelSearch.toLowerCase()))
+            }
+            return articulo
+        },
+        funcionPrecioTotal(){
+            return this.arrayCarrito.reduce((acumulador, item)=> acumulador + item.precio, 0 )
+        }
+    } 
+}).mount('#app');

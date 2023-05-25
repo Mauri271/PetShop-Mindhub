@@ -7,7 +7,9 @@ createApp({
             articulosMostrar: [],
             vModelSearch:"",
             vModelCheck: [],
-            arrayCarrito: []
+            arrayCarrito: [],
+            isAnimated: false
+
         }
     },
     created(){
@@ -17,6 +19,7 @@ createApp({
             this.articulos = data;
             this.articulosMostrar = this.articulos.filter(item => item.categoria == "farmacia" )
             this.arrayCarrito = this.getLocalStorage() ?? []
+            
         })
 
     },
@@ -31,12 +34,16 @@ createApp({
             const json = JSON.stringify(this.arrayCarrito)
             localStorage.setItem("carrito", json)
         },
+        borrarCarrito(id){
+            this.arrayCarrito = this.arrayCarrito.filter(articulo => articulo._id != id)
+            const json = JSON.stringify(this.arrayCarrito)
+            localStorage.setItem("carrito", json)
+        },
         getLocalStorage(){
             return JSON.parse(localStorage.getItem("carrito"))
         }
     },
     computed: {
-        
         filtro(){
             let articulo = this.articulosMostrar
 
@@ -44,6 +51,9 @@ createApp({
                 articulo = articulo.filter(item => item.producto.toLowerCase().includes(this.vModelSearch.toLowerCase()))
             }
             return articulo
+        },
+        funcionPrecioTotal(){
+            return this.arrayCarrito.reduce((acumulador, item)=> acumulador + item.precio, 0 )
         }
     } 
 }).mount('#app');

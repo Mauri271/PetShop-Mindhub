@@ -3,6 +3,10 @@
     height: 4rem;
 }
 
+main{
+    min-height: 84vh;
+}
+
 nav, footer{
     background-color: #ABE5C9 !important;
 }

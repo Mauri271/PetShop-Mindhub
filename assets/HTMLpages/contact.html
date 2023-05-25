@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../style.css/styleContacto.css">
     <link rel="stylesheet" href="../style.css/style.css">
     <link rel="shortcut icon" href="../images/favicon.jpg" type="image/x-icon">
-    <title>Contacto</title>
+
 <!-- CSS -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
 <!-- Default theme -->
@@ -32,6 +32,8 @@
 <!-- Bootstrap theme -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
 
+
+    <title>Contact</title>
 
 </head>
 
@@ -55,14 +57,14 @@
                             <a class="nav-link" aria-current="page" href="../../index.html">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="./pharmacy.html">Farmacia</a>
+                            <a class="nav-link active" href="./pharmacy.html">Pharmacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./toys.html">Jugueteria</a>
+                            <a class="nav-link" href="./toys.html">Toys</a>
 
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contacto</a>
+                            <a class="nav-link" href="#">Contact</a>
                         </li>
                     </ul>
                 </div>
@@ -94,40 +96,40 @@
                     <fieldset class="w-100">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 d-flex flex-column  gap-2">
-                                <label for="nombre">Nombre</label>
-                                <input v-model="nombre" type="text" id="nombre" name="nombre" placeholder="Nombre">
-                                <label for="apellido">Apellido</label>
-                                <input v-model="apellido" type="text" id="apellido" name="apellido" placeholder="Apellido">
-                                <label for="telefono">Teléfono</label>
-                                <input v-model="telefono" type="tel" id="telefono" name="telefono" placeholder="Teléfono ">
+                                <label for="nombre">Name</label>
+                                <input v-model="nombre" type="text" id="nombre" name="nombre" placeholder="Name">
+                                <label for="apellido">Last name</label>
+                                <input v-model="apellido" type="text" id="apellido" name="apellido" placeholder="Last name">
+                                <label for="telefono">Phone</label>
+                                <input v-model="telefono" type="tel" id="telefono" name="telefono" placeholder="Phone Number">
                                 <label for="email">Email</label>
                                 <input v-model="email" type="email" id="email" name="email" placeholder="Email">
                             </div>
                             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 d-flex flex-column gap-2">
-                                <label for="mascota">Mascota</label>
+                                <label for="mascota">Choose your pet</label>
                                 <select v-model="mascota" class="form-select" aria-label="Selector de mascotas">
-                                    <option value="">Selecciona su mascota</option>
-                                    <option value="1">Perro</option>
-                                    <option value="2">Gato</option>
-                                    <option value="3">Otro</option>
+                                    <option value="">What pet do you have?</option>
+                                    <option value="1">Dog</option>
+                                    <option value="2">Cat</option>
+                                    <option value="3">Other</option>
                                 </select>
-                                <label for="mensaje">Mensaje</label>
+                                <label for="mensaje">Message</label>
                                 <textarea v-model="mensaje" name="mensaje" id="mensaje" cols="22" rows="5"></textarea>
                             </div>
                         </div>
                     </fieldset>
 
-                    <button @click="enviarDatosFormulario()" :disabled="!hayDatosIngresados" class="btn btn-primary mt-5" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Enviar consulta</button>
+                    <button @click="enviarDatosFormulario()" :disabled="!hayDatosIngresados" class="btn btn-primary mt-5" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Send query</button>
                 </form>
             </section>
         </div>
         {{validarDatosIngresados}}
         <div class="row ps-3" v-if="mostrarDatosIngresados" class="container">
-            <h3 class="text-center">Comentarios de nuestros clientes</h3>
+            <h3 class="text-center">Comments of our clients</h3>
             <ul class="col-3"  v-for="datos of datosIngresados">
-                <li>Nombre: {{datos.nombre}}</li>
-                <li>Apellido: {{datos.apellido}}</li>
-                <li>Mensaje: {{datos.mensaje}}</li>
+                <li>Name: {{datos.nombre}}</li>
+                <li>Last Name: {{datos.apellido}}</li>
+                <li>Message: {{datos.mensaje}}</li>
             </ul>
         </div>
         
@@ -136,11 +138,11 @@
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">Su consulta se envió correctamente</h5>
+                  <h5 class="modal-title">Your query has been succesfully sent.</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <p>En breve nos comunicaremos con Usted. Muchas gracias <span class="fw-bold">{{datosIngresados.nombre}}</span></p>
+                  <p>We will contact you soon. Thanks for sharing! <span class="fw-bold">{{datosIngresados.nombre}}</span></p>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

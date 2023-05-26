@@ -22,6 +22,7 @@ createApp({
     },
     methods: {
         enviarDatosFormulario() {
+            const nombreUsuario = this.nombre
             this.datosIngresados.push({
                 nombre: this.nombre,
                 apellido: this.apellido,
@@ -29,6 +30,7 @@ createApp({
             })
             this.resetearFormulario()
             this.mostrarDatosIngresados = true
+                alertify.alert("Your query has been sent correctly", `We will contact you soon, thanks! ${nombreUsuario}`).set('closable', false)
         },
         resetearFormulario() {
             this.nombre = this.apellido = this.telefono = this.email = this.mascota = this.mensaje = ''

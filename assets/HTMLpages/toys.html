@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro&family=Literata">
     <link rel="stylesheet" href="./../style.css/stylePharmacy.css">
     <link rel="stylesheet" href="../style.css/style.css">
-    <title>Toys</title>
+    <title>Lorem Ipsum | Toys</title>
 
 
 
@@ -128,8 +128,7 @@
                 <div class="col-12 d-flex flex-wrap justify-content-center gap-4">
                     <div class="card p-0 border-1 position-relative" v-for="articulo of filtro">
                         <span v-if="!articulo.disponibles"
-                            class="m-1 badge rounded-pill text-bg-danger position-absolute top-0 start-0">We`re sorry,
-                            there is no stock available!</span>
+                            class="m-1 badge rounded-pill text-bg-danger position-absolute top-0 start-0">No stock available!</span>
                         <a :href="'./details.html?_id='+articulo._id"><img :src="articulo.imagen" class="card-img-top"
                                 :alt="articulo.nombre"></a>
                         <div class="card-body">

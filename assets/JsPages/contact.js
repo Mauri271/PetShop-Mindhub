@@ -30,7 +30,7 @@ createApp({
             })
             this.resetearFormulario()
             this.mostrarDatosIngresados = true
-                alertify.alert("Su consulta se envió correctamente", `En breve nos comunicaremos con Usted. Muchas gracias ${nombreUsuario}`).set('closable', false)
+                alertify.alert("Your query has been sent correctly", `We will contact you soon, thanks! ${nombreUsuario}`).set('closable', false)
         },
         resetearFormulario() {
             this.nombre = this.apellido = this.telefono = this.email = this.mascota = this.mensaje = ''

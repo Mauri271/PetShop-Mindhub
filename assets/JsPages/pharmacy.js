@@ -44,6 +44,7 @@ createApp({
         },
         vaciarStorage(){
             localStorage.removeItem("carrito")
+            this.arrayCarrito = []
         }
     },
     computed: {

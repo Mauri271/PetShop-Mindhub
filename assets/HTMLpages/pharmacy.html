@@ -151,10 +151,10 @@
                 </div>
                 <div class="col-3">
                     <div class="input-group input-spinner">
-                        <form @submit.prevent>
-                            <input type="button" value="-" @click="decrementarCantidadCarrito(articuloCarrito.articulo._id)" class="button-minus  btn  btn-sm" data-field="quantity">
-                            <input type="number" v-model="articuloCarrito.cantidad">
-                            <input type="button" value="+" @click="incrementarCantidadCarrito(articuloCarrito.articulo._id)" class="button-plus  btn  btn-sm" data-field="quantity">
+                        <form >
+                            <input type="button" value="-" @click="decrementarCantidadCarrito(articuloCarrito.articulo._id)" class="button-minus  btn  btn-sm">
+                            <input type="number" step="1" min="1" :max="articuloCarrito.articulo.disponibles" v-model="articuloCarrito.cantidad" name="quantity" class="input-form" readonly>
+                            <input type="button" value="+" @click="incrementarCantidadCarrito(articuloCarrito.articulo._id)" class="button-plus  btn  btn-sm">
                         </form>
                     </div>
                 </div>

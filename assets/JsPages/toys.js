@@ -40,7 +40,9 @@ createApp({
             console.log(id)
             const articuloCarrito = this.arrayCarrito.find(articuloCarrito => articuloCarrito.articulo._id == id)
             if(articuloCarrito) {
-                articuloCarrito.cantidad += 1
+                if(articuloCarrito.cantidad < articuloCarrito.articulo.disponibles){
+                    articuloCarrito.cantidad += 1
+                }
                 const json = JSON.stringify(this.arrayCarrito)
                 localStorage.setItem("carrito", json)
             }
@@ -49,9 +51,8 @@ createApp({
             console.log(id)
             const articuloCarrito = this.arrayCarrito.find(articuloCarrito => articuloCarrito.articulo._id == id)
             if(articuloCarrito) {
-                articuloCarrito.cantidad -= 1
-                if (articuloCarrito.cantidad === 0) {
-                    this.arrayCarrito = this.arrayCarrito.filter(articuloCarrito => articuloCarrito.articulo._id != id)
+                if (articuloCarrito.cantidad > 1) {
+                    articuloCarrito.cantidad -= 1
                 }
                 const json = JSON.stringify(this.arrayCarrito)
                 localStorage.setItem("carrito", json)

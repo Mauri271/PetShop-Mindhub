@@ -31,3 +31,8 @@ iframe{
     border: 1px solid #000;
     border-radius: 10px;
 }
+.bg-crema{
+    background-color: var(--color-2);
+    color: #fff;
+    border: none !important;
+}

@@ -12,6 +12,8 @@ main{
     background-color:#ebebeb;
     min-height: 84vh;
 }
+
+
 .card{
     width: 18rem;
     border-radius: 0px;
@@ -20,6 +22,9 @@ main{
 .card img{
     height: 14.5rem !important;
     object-fit: cover;
+}
+img.veterinaria-logo{
+    height: 3rem!important;
 }
 
 .card-footer{

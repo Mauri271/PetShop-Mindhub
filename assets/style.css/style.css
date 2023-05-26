@@ -1,10 +1,46 @@
 :root{
-    --tamaño-icon:4rem
+    --tamaño-icon:4rem;
+    --color-1: #7952b3    ;    ;
 }
+
+.patas{
+    background-image: url(./../images/fondo170667a.jpg);
+}
+
+.bg-fff{
+    background-color: #fff;
+}
+
+body,footer {
+    font-size: 20px;
+  }
+  div:nth-child(1) {
+    font-family: 'Crimson Pro', serif;
+  }
+  div:nth-child(2) {
+    font-family: 'Literata’, serif;
+  }
 
 #favicon{
     width: var(--tamaño-icon);
     height: var(--tamaño-icon);
+}
+
+.logo-nav{
+    width: 6rem;
+}
+
+.navbar{
+    background-color:var(--color-1) !important;
+}
+
+.navbar-nav  .nav-item a.nav-link {
+    color: #fff!important;
+    font-weight: 800;
+}
+
+.bi-cart3{
+    color: #fff!important;
 }
 
 p i{
@@ -12,8 +48,8 @@ p i{
 }
 
 
-nav, footer{
-    background-color: #ABE5C9 !important;
+footer{
+    background-color:var(--color-1) !important;
 }
 
 .cardDetails{
@@ -24,10 +60,19 @@ nav, footer{
     border: 1px solid black; 
 }
 
+.object-fit-cover{
+    object-fit: cover;
+}
+
 .buy{
     cursor:pointer
 }
 
 h1, h2, h2{
     text-align: center;
+}
+
+
+.card-border{
+    border: solid 1px var(--color-1);
 }

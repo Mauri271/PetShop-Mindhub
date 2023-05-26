@@ -27,8 +27,8 @@ nav, footer{
 
 } 
 .imagen-farmacia {
-    width: 20vw !important;
-    height: 30vh !important;
+    width: 100% !important;
+    height: 15rem !important;
     padding-top: 6rem !;
 }
 .imagen-carousel-2-home {
@@ -49,8 +49,8 @@ nav, footer{
 .m-3{
     margin: 3rem !important;
 }
-.card:hover{
-    -webkit-transform:scale(1.1);transform:scale(1.1);
-overflow:hidden;
-transition: 1.5s;
+.card-hover:hover{
+    -webkit-transform:scale(1.1);transform:scale(1.1) !important;
+    overflow:hidden !important;
+    transition: 1.5s !important;
 }

@@ -22,29 +22,52 @@ createApp({
     },
     methods: {
         añadirCarrito(id){
-            if(this.arrayCarrito.find(articulo => articulo._id == id)){
-                this.arrayCarrito = this.arrayCarrito.filter(articulo => articulo._id != id)
-            }else {
-                const aux = this.articulosMostrar.find(articulo => articulo._id == id)
-                this.arrayCarrito.push(aux)
-            }
+            if(this.arrayCarrito.find(articuloCarrito => articuloCarrito.articulo._id == id)) {
+                return
+            } 
+
+            const aux = this.articulosMostrar.find(articulo => articulo._id == id)
+            this.arrayCarrito.push({articulo: aux, cantidad: 1});
             const json = JSON.stringify(this.arrayCarrito)
             localStorage.setItem("carrito", json)
-            alertify.success('Article added to the cart');
         },
         borrarCarrito(id){
-            this.arrayCarrito = this.arrayCarrito.filter(articulo => articulo._id != id)
+            this.arrayCarrito = this.arrayCarrito.filter(articuloCarrito => articuloCarrito.articulo._id != id)
             const json = JSON.stringify(this.arrayCarrito)
             localStorage.setItem("carrito", json)
+        },
+        incrementarCantidadCarrito(id) {
+            console.log(id)
+            const articuloCarrito = this.arrayCarrito.find(articuloCarrito => articuloCarrito.articulo._id == id)
+            if(articuloCarrito) {
+                if(articuloCarrito.cantidad < articuloCarrito.articulo.disponibles){
+                    articuloCarrito.cantidad += 1
+                }
+                const json = JSON.stringify(this.arrayCarrito)
+                localStorage.setItem("carrito", json)
+            }
+        },
+        decrementarCantidadCarrito(id) {
+            console.log(id)
+            const articuloCarrito = this.arrayCarrito.find(articuloCarrito => articuloCarrito.articulo._id == id)
+            if(articuloCarrito) {
+                if (articuloCarrito.cantidad > 1) {
+                    articuloCarrito.cantidad -= 1
+                }
+                const json = JSON.stringify(this.arrayCarrito)
+                localStorage.setItem("carrito", json)
+            }
         },
         getLocalStorage(){
             return JSON.parse(localStorage.getItem("carrito"))
-        },
+        },        
         vaciarStorage(){
             localStorage.removeItem("carrito")
             this.arrayCarrito = []
         }
     },
+
+
     computed: {
         
         filtro(){
@@ -56,7 +79,7 @@ createApp({
             return articulo
         },
         funcionPrecioTotal(){
-            return this.arrayCarrito.reduce((acumulador, item)=> acumulador + item.precio, 0 )
+            return this.arrayCarrito.reduce((acumulador, item)=> acumulador + item.articulo.precio * item.cantidad, 0 )
         }
     } 
 }).mount('#app');

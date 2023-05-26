@@ -122,19 +122,19 @@
                         </div>
                     </fieldset>
 
-                    <button @click="enviarDatosFormulario()" :disabled="!hayDatosIngresados" class="btn btn-primary mt-5" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Send query</button>
+                    <button @click="enviarDatosFormulario()" :disabled="!hayDatosIngresados" class="btn btn-primary bg-crema mt-5" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Send</button>
                 </form>
             </section>
         </div>
         {{validarDatosIngresados}}
-        <div class="row my-5" class="container ">
+        <div class="row my-5" class="container-fluid ">
             <h3 class="text-center bg-crema">Comments of our clients</h3>
 
             <div class="row justify-content-center align-content-center my-3 " v-if="mostrarDatosIngresados" v-for="datos of datosIngresados">
-                <div class="col-12 col-md-2 justify-content-center">
-                    <img class="image" src="./../images/veterinary.png" alt="">
+                <div class="col-4 col-md-2 justify-content-center">
+                    <img class="image object-fit-cover img-fluid" src="./../images/veterinary.png" alt="">
                 </div>
-                <div class="col-12 col-md-9 ms-5">
+                <div class="col-8 col-md-9 p-0 ms-0 ms-md-5">
                     <h4 class="fw-bold mb-3 text-muted">{{datos.nombre}}  {{datos.apellido}}</h4>
                     <p>
                         {{datos.mensaje}}

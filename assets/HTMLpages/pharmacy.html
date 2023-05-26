@@ -134,32 +134,31 @@
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header border-bottom">
-            <h5 class="offcanvas-title fw-bolder text-mute ps-2" id="offcanvasRightLabel">Shop Cart <i class="bi bi-shop fs-2"></i></h5>
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">Shop Cart</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div v-if="funcionPrecioTotal > 0" class="d-flex justify-content-between alert alert-warning mt-3 mb-0 mx-3">
+        <div class="d-flex justify-content-between alert alert-warning mt-3 mb-0 mx-3">
             <span>Purchase total:</span> <span>${{funcionPrecioTotal.toLocaleString()}}</span>
-        </div>
-        <div class="offcanvas-body mx-2 flex-grow-1">
-            <div class="row align-content-center py-2 border-top" v-if="arrayCarrito.length"
-                v-for="articulo of arrayCarrito">
+          </div>
+        <div class="offcanvas-body mx-2">
+            <div class="row align-content-center py-2 border-top" v-if="arrayCarrito.length > 0" v-for="articuloCarrito of arrayCarrito">
                 <div class="col-3 col-md-2">
-                    <img class="img-fluid" :src="articulo.imagen" :alt="articulo.producto">
+                    <img class="img-fluid" :src="articuloCarrito.articulo.imagen" :alt="articuloCarrito.articulo.producto" >
                 </div>
                 <div class="col-4 col-md-6 col-lg-5">
-                    <p class="fw-bold small">{{articulo.producto}}</p>
-                    <a class="small text-decoration-none text-dark" role="button"
-                        @click="borrarCarrito(articulo._id)"><span class="me-1"><i class="bi bi-trash"></i></span><span
-                            class="text-muted">Remove</span></a>
+                    <p class="fw-bold small">{{articuloCarrito.articulo.producto}}</p>
+                    <a class="small text-decoration-none text-dark" role="button" @click="borrarCarrito(articuloCarrito.articulo._id)"><span class="me-1"><i class="bi bi-trash"></i></span><span class="text-muted">Remove</span></a>
                 </div>
                 <div class="col-3">
                     <div class="input-group input-spinner">
-                        <input type="button" value="-" class="button-minus  btn  btn-sm" data-field="quantity">
-                        <input type="number" step="1" value="1" :max="articulo.disponibles" min="0" name="quantity" class="form-input quantity">
-                        <input type="button" value="+" class="button-plus  btn  btn-sm" data-field="quantity">
+                        <form @submit.prevent>
+                            <input type="button" value="-" @click="decrementarCantidadCarrito(articuloCarrito.articulo._id)" class="button-minus  btn  btn-sm" data-field="quantity">
+                            <input type="number" v-model="articuloCarrito.cantidad">
+                            <input type="button" value="+" @click="incrementarCantidadCarrito(articuloCarrito.articulo._id)" class="button-plus  btn  btn-sm" data-field="quantity">
+                        </form>
                     </div>
                 </div>
-                <div class="col-2 text-end"><span class="fw-bold">${{articulo.precio.toLocaleString()}}</span></div>
+                <div class="col-2 text-end"><span class="fw-bold">${{(articuloCarrito.articulo.precio * articuloCarrito.cantidad).toLocaleString()}}</span></div>
             </div>
             <div v-if="!arrayCarrito.length">
                 <h3 class="text-center fw-bold opacity-25 my-5">There is no elements in your shop carts, add some!</h3>

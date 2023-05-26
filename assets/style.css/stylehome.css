@@ -10,9 +10,37 @@
 p i{
     font-size: 2rem;
 }
-nav, footer{
-    background-color: #ABE5C9 !important;
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f2f2f2;
+    padding: 20px;
 }
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.footer p, .footer h5 {
+    margin: 0;
+}
+
+.footer p i {
+    margin-right: 4px;
+    color: #000;
+    font-size: 18px;
+}
+
+.footer h5 {
+    font-size: 14px;
+    color: #777;
+}
+
 .carousel-img {
     height: 60vh !important;
 

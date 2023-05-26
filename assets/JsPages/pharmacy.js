@@ -26,7 +26,7 @@ createApp({
     methods: {
         añadirCarrito(id){
             if(this.arrayCarrito.find(articuloCarrito => articuloCarrito.articulo._id == id)) {
-                return
+                return alertify.success('Added to the cart');
             } 
 
             const aux = this.articulosMostrar.find(articulo => articulo._id == id)
@@ -68,7 +68,8 @@ createApp({
         vaciarStorage(){
             localStorage.removeItem("carrito")
             this.arrayCarrito = []
-        }
+        },
+        
     },
 
     computed: {
